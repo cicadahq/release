@@ -2,6 +2,12 @@
 
 ## Getting started guide
 
+### 0. Dependencies
+
+- Deno - [Installation Guide](https://deno.land/manual@v1.32.1/getting_started/installation)
+- Docker - [Installation Guide](https://docs.docker.com/desktop/)
+- `gh` cli - [Installation Guide](https://github.com/cli/cli#installation)
+
 ### 1. Download the CLI
 
 Use this script to download the latest release of Cicada:
@@ -49,3 +55,7 @@ const job = new Job({
 
 export default new Pipeline([job]);
 ```
+
+### 4. Run the pipeline
+
+Run `cicada run .cicada/pipeline.ts` to run the pipeline!
