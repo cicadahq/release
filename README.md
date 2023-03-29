@@ -4,7 +4,8 @@
 
 ### 0. Dependencies
 
-- Deno - [Installation Guide](https://deno.land/manual@v1.32.1/getting_started/installation)
+- Deno -
+  [Installation Guide](https://deno.land/manual@v1.32.1/getting_started/installation)
 - Docker - [Installation Guide](https://docs.docker.com/desktop/)
 - `gh` cli - [Installation Guide](https://github.com/cli/cli#installation)
 
@@ -31,10 +32,7 @@ Create a file in `.cicada` called the name of your pipeline `<pipeline>.ts`
 Here is a starter pipeline to get started
 
 ```ts
-import {
-  Job,
-  Pipeline,
-} from "https://raw.githubusercontent.com/cicadahq/cicada/main/lib.ts";
+import { Job, Pipeline } from "https://deno.land/x/cicada@v0.1.0/lib.ts";
 
 const job = new Job({
   name: "Simple job",
