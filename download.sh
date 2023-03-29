@@ -1,41 +1,40 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Check for curl and gh
-if ! command -v curl &> /dev/null
-then
+if ! command -v curl >/dev/null 2>&1; then
     echo "curl could not be found"
-    exit
+    exit 1
 fi
 
-if ! command -v gh &> /dev/null
-then
+if ! command -v gh >/dev/null 2>&1; then
     echo "gh could not be found"
-    exit
+    exit 1
 fi
 
 # make a temp directory to download the files
 TMP_DIR=$(mktemp -d)
 
 # os based
-if [[ $(uname) == "Darwin" ]]; then
+UNAME=$(uname)
+if [ "$UNAME" = "Darwin" ]; then
     PATTERN="cicada-*-x86_64-apple-darwin.zip"
-elif [[ $(uname) == "Linux" ]]; then
-    PATTERN="cicada-v0.1.2-x86_64-unknown-linux-musl.tar.gz"
+elif [ "$UNAME" = "Linux" ]; then
+    PATTERN="cicada-*-x86_64-unknown-linux-musl.tar.gz"
 else
     echo "Unsupported OS"
-    exit
+    exit 1
 fi
 
 gh release download --repo "cicadahq/release" --pattern "$PATTERN" --dir "$TMP_DIR"
 
 # extract the file
-if [[ $(uname) == "Darwin" ]]; then
+if [ "$UNAME" = "Darwin" ]; then
     unzip "$TMP_DIR/$PATTERN" -d "$TMP_DIR"
-elif [[ $(uname) == "Linux" ]]; then
+elif [ "$UNAME" = "Linux" ]; then
     tar -xvf "$TMP_DIR/$PATTERN" -C "$TMP_DIR"
 else
     echo "Unsupported OS"
-    exit
+    exit 1
 fi
 
 # move the file to the current directory
