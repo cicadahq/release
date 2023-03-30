@@ -40,3 +40,20 @@ cicada init <pipeline-name>
 ```bash
 cicada run .cicada/<pipeline-name>.ts
 ```
+
+### 4. (Optional) Set up autocomplete for .cicada files
+
+Install the Deno extension for VSCode:
+
+```bash
+code --install-extension denoland.vscode-deno
+```
+
+Add the following to your `.vscode/settings.json`
+
+```json
+{
+  "deno.enable": true,
+  "deno.enablePaths": [".cicada"]
+}
+```
