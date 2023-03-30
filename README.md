@@ -19,7 +19,7 @@ brew install --cask docker
 gh auth login -w
 ```
 
-### 1. Download the CLI
+### 1. Download the Cicada CLI
 
 Use this script to download the latest release of Cicada:
 
