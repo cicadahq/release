@@ -27,43 +27,16 @@ Use this script to download the latest release of Cicada:
 curl -fSsL https://gist.githubusercontent.com/grant0417/25bac5058396b43eabfdb6cb5d63fa44/raw/ | sh
 ```
 
-### 2. Create a `.cicada` folder an existing project
+### 2. Create a pipeline
 
-Go to your project and create a `.cicada` folder
+Go to the project you want to make a pipeline for and run:
 
 ```bash
-mkdir -p .cicada
+cicada init <pipeline-name>
 ```
 
-### 3. Create a new pipeline file
+### 3. Run the pipeline
 
-Create a file in `.cicada` called the name of your pipeline `<pipeline>.ts`
-
-Here is a starter pipeline to get started
-
-```ts
-import { Job, Pipeline } from "https://deno.land/x/cicada@v0.1.0/lib.ts";
-
-const job = new Job({
-  name: "Simple job",
-  image: "ubuntu:22.04",
-  steps: [
-    {
-      name: "Print a message",
-      run: "echo Hello, world!",
-    },
-    {
-      name: "Run a js function",
-      run: () => {
-        console.log("Hello from js");
-      },
-    },
-  ],
-});
-
-export default new Pipeline([job]);
+```bash
+cicada run .cicada/<pipeline-name>.ts
 ```
-
-### 4. Run the pipeline
-
-Run `cicada run .cicada/pipeline.ts` to run the pipeline!
