@@ -27,7 +27,7 @@ Use this script to download the latest release of Cicada:
 curl -fSsL https://gist.githubusercontent.com/grant0417/25bac5058396b43eabfdb6cb5d63fa44/raw/ | sh
 ```
 
-### 2. Create the `.cicada` folder
+### 2. Create a `.cicada` folder an existing project
 
 Go to your project and create a `.cicada` folder
 
