@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 # Check for curl and gh
 if ! command -v curl >/dev/null 2>&1; then
     echo "curl could not be found"
@@ -38,14 +40,27 @@ gh release download --repo "cicadahq/release" --pattern "$PATTERN" --dir "$TMP_D
 # extract the file
 if [ "$UNAME" = "Darwin" ]; then
     unzip "$TMP_DIR/$PATTERN" -d "$TMP_DIR"
+    mv "$TMP_DIR/out/cicada" "$TMP_DIR"
 elif [ "$UNAME" = "Linux" ]; then
-    tar -xvf "$TMP_DIR/$PATTERN" -C "$TMP_DIR"
+    tar -xvf $TMP_DIR/cicada-*-x86_64-unknown-linux-musl.tar.gz -C "$TMP_DIR"
 else
     echo "Unsupported OS"
     exit 1
 fi
 
-# move the file to the current directory
-mv "$TMP_DIR/out/cicada" ~/.local/bin/cicada
+# if root move to /usr/local/bin
+if [ "$EUID" -eq 0 ]; then
+    DEST=/usr/local/bin
+else
+    DEST="$HOME/.local/bin"
+fi
 
-echo Make sure to add ~/.local/bin to your PATH
+# move the file to the current directory
+mv "$TMP_DIR/cicada" "$DEST"
+
+if [ "$EUID" -eq 0 ]; then
+    echo "cicada has been installed to /usr/local/bin"
+else
+    echo "cicada has been installed to ~/.local/bin"
+    echo "Make sure to add $HOME/.local/bin to your PATH"
+fi
