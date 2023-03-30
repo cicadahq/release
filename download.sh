@@ -39,17 +39,15 @@ gh release download --repo "cicadahq/release" --pattern "$PATTERN" --dir "$TMP_D
 
 # extract the file
 if [ "$UNAME" = "Darwin" ]; then
-    unzip "$TMP_DIR/$PATTERN" -d "$TMP_DIR"
-    mv "$TMP_DIR/out/cicada" "$TMP_DIR"
-elif [ "$UNAME" = "Linux" ]; then
-    tar -xvf $TMP_DIR/cicada-*-x86_64-unknown-linux-musl.tar.gz -C "$TMP_DIR"
-else
+EUIDelse
     echo "Unsupported OS"
     exit 1
 fi
 
+USER_ID=$(id -u)
+
 # if root move to /usr/local/bin
-if [ "$EUID" -eq 0 ]; then
+if [ "$USER_ID" -eq 0 ]; then
     DEST=/usr/local/bin
 else
     DEST="$HOME/.local/bin"
@@ -58,7 +56,7 @@ fi
 # move the file to the current directory
 mv "$TMP_DIR/cicada" "$DEST"
 
-if [ "$EUID" -eq 0 ]; then
+if [ "$USER_ID" -eq 0 ]; then
     echo "cicada has been installed to /usr/local/bin"
 else
     echo "cicada has been installed to ~/.local/bin"
