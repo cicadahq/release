@@ -11,6 +11,14 @@ if ! command -v gh >/dev/null 2>&1; then
     exit 1
 fi
 
+if ! command -v docker >/dev/null 2>&1; then
+    echo "Warning: docker could not be found, you will not be able to use cicada"
+fi
+
+if ! command -v deno >/dev/null 2>&1; then
+    echo "Warning: deno could not be found, you will not be able to use cicada"
+fi
+
 # make a temp directory to download the files
 TMP_DIR=$(mktemp -d)
 

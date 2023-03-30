@@ -9,6 +9,15 @@
 - Docker - [Installation Guide](https://docs.docker.com/desktop/)
 - `gh` cli - [Installation Guide](https://github.com/cli/cli#installation)
 
+#### MacOS Quickstart
+
+```bash
+brew install deno gh
+brew install --cask docker
+
+gh auth login -w
+```
+
 ### 1. Download the CLI
 
 Use this script to download the latest release of Cicada:
