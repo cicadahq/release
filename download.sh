@@ -52,9 +52,11 @@ USER_ID=$(id -u)
 
 # if root move to /usr/local/bin
 if [ "$USER_ID" -eq 0 ]; then
-    DEST=/usr/local/bin
+    mkdir -p /usr/local/bin
+    DEST=/usr/local/bin/cicada
 else
-    DEST="$HOME/.local/bin"
+    mkdir -p "$HOME/.local/bin"
+    DEST="$HOME/.local/bin/cicada"
 fi
 
 # move the file to the current directory
