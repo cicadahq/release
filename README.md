@@ -6,7 +6,8 @@
 
 - Deno -
   [Installation Guide](https://deno.land/manual@v1.32.1/getting_started/installation)
-- Docker - [Installation Guide](https://docs.docker.com/desktop/)
+- Docker (at least version 23.0) -
+  [Installation Guide](https://docs.docker.com/desktop/)
 - `gh` cli - [Installation Guide](https://github.com/cli/cli#installation)
 
 #### MacOS Quickstart
