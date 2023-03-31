@@ -24,14 +24,29 @@ fi
 # make a temp directory to download the files
 TMP_DIR=$(mktemp -d)
 
+
 # os based
 UNAME=$(uname)
-if [ "$UNAME" = "Darwin" ]; then
+ARCH=$(uname -m)
+
+# normalize arch
+case $ARCH in
+    aarch64 | arm64)
+        export ARCH=aarch64
+        ;;
+    x86_64 | x86-64 | x64 | amd64)
+        export ARCH=x86_64
+        ;;
+esac
+
+if [ "$UNAME" = "Darwin" ] && [ "$ARCH" = "x86_64" ]; then
     PATTERN="cicada-x86_64-apple-darwin.zip"
-elif [ "$UNAME" = "Linux" ]; then
+elif [ "$UNAME" = "Darwin" ] && [ "$ARCH" = "aarch64" ]; then
+    PATTERN="cicada-aarch64-apple-darwin.zip"
+elif [ "$UNAME" = "Linux" ] && [ "$ARCH" = "x86_64" ]; then
     PATTERN="cicada-x86_64-unknown-linux-gnu.tar.gz"
 else
-    echo "Unsupported OS"
+    echo "Unsupported OS or Architecture"
     exit 1
 fi
 
