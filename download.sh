@@ -27,9 +27,9 @@ TMP_DIR=$(mktemp -d)
 # os based
 UNAME=$(uname)
 if [ "$UNAME" = "Darwin" ]; then
-    PATTERN="cicada-*-x86_64-apple-darwin.zip"
+    PATTERN="cicada-x86_64-apple-darwin.zip"
 elif [ "$UNAME" = "Linux" ]; then
-    PATTERN="cicada-*-x86_64-unknown-linux-musl.tar.gz"
+    PATTERN="cicada-x86_64-unknown-linux-gnu.tar.gz"
 else
     echo "Unsupported OS"
     exit 1
@@ -40,9 +40,8 @@ gh release download --repo "cicadahq/release" --pattern "$PATTERN" --dir "$TMP_D
 # extract the file
 if [ "$UNAME" = "Darwin" ]; then
     unzip "$TMP_DIR/$PATTERN" -d "$TMP_DIR"
-    mv "$TMP_DIR/out/cicada" "$TMP_DIR"
 elif [ "$UNAME" = "Linux" ]; then
-    tar -xvf $TMP_DIR/cicada-*-x86_64-unknown-linux-musl.tar.gz -C "$TMP_DIR"
+    tar -xvf "$TMP_DIR/$PATTERN" -C "$TMP_DIR"
 else
     echo "Unsupported OS"
     exit 1
