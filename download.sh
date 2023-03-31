@@ -40,9 +40,9 @@ case $ARCH in
 esac
 
 if [ "$UNAME" = "Darwin" ] && [ "$ARCH" = "x86_64" ]; then
-    PATTERN="cicada-x86_64-apple-darwin.zip"
+    PATTERN="cicada-x86_64-apple-darwin.tar.gz"
 elif [ "$UNAME" = "Darwin" ] && [ "$ARCH" = "aarch64" ]; then
-    PATTERN="cicada-aarch64-apple-darwin.zip"
+    PATTERN="cicada-aarch64-apple-darwin.tar.gz"
 elif [ "$UNAME" = "Linux" ] && [ "$ARCH" = "x86_64" ]; then
     PATTERN="cicada-x86_64-unknown-linux-gnu.tar.gz"
 else
@@ -53,14 +53,7 @@ fi
 gh release download --repo "cicadahq/release" --pattern "$PATTERN" --dir "$TMP_DIR"
 
 # extract the file
-if [ "$UNAME" = "Darwin" ]; then
-    unzip "$TMP_DIR/$PATTERN" -d "$TMP_DIR"
-elif [ "$UNAME" = "Linux" ]; then
-    tar -xvf "$TMP_DIR/$PATTERN" -C "$TMP_DIR"
-else
-    echo "Unsupported OS"
-    exit 1
-fi
+tar -xvf "$TMP_DIR/$PATTERN" -C "$TMP_DIR"
 
 USER_ID=$(id -u)
 
