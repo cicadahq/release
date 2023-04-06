@@ -45,7 +45,7 @@ else
     exit 1
 fi
 
-curl -s -L -o "$TMP_DIR" "$URL"
+curl -fSsL -o "$TMP_DIR" "$URL"
 
 # extract the file
 tar -xvf "$TMP_DIR/$PATTERN" -C "$TMP_DIR"
