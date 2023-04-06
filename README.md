@@ -15,8 +15,6 @@
 ```bash
 brew install deno gh
 brew install --cask docker
-
-gh auth login -w
 ```
 
 ### 1. Download the Cicada CLI
@@ -24,7 +22,7 @@ gh auth login -w
 Use this script to download the latest release of Cicada:
 
 ```bash
-curl -fSsL https://gist.githubusercontent.com/grant0417/25bac5058396b43eabfdb6cb5d63fa44/raw/ | sh
+curl -fSsL https://raw.githubusercontent.com/cicadahq/release/main/download.sh | sh
 ```
 
 ### 2. Create a pipeline
