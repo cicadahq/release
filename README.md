@@ -12,7 +12,7 @@
 #### MacOS Quickstart
 
 ```bash
-brew install deno gh
+brew install deno
 brew install --cask docker
 ```
 
