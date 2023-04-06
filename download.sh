@@ -45,10 +45,10 @@ else
     exit 1
 fi
 
-curl -s -L -o "$TMP_DIR" "$URL"
+curl -s -L -o "$TMP_DIR/$(basename $URL)" "$URL"
 
 # extract the file
-tar -xvf "$TMP_DIR/$PATTERN" -C "$TMP_DIR"
+tar -xvf "$TMP_DIR/$(basename $URL)" -C "$TMP_DIR"
 
 USER_ID=$(id -u)
 
