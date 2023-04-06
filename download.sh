@@ -2,14 +2,9 @@
 
 set -eu
 
-# Check for curl and gh
+# Check for curl
 if ! command -v curl >/dev/null 2>&1; then
     echo "curl could not be found"
-    exit 1
-fi
-
-if ! command -v gh >/dev/null 2>&1; then
-    echo "gh could not be found"
     exit 1
 fi
 
@@ -40,17 +35,17 @@ case $ARCH in
 esac
 
 if [ "$UNAME" = "Darwin" ] && [ "$ARCH" = "x86_64" ]; then
-    PATTERN="cicada-x86_64-apple-darwin.tar.gz"
+    URL="https://github.com/cicadahq/release/releases/latest/download/cicada-x86_64-apple-darwin.tar.gz"
 elif [ "$UNAME" = "Darwin" ] && [ "$ARCH" = "aarch64" ]; then
-    PATTERN="cicada-aarch64-apple-darwin.tar.gz"
+    URL="https://github.com/cicadahq/release/releases/latest/download/cicada-aarch64-apple-darwin.tar.gz"
 elif [ "$UNAME" = "Linux" ] && [ "$ARCH" = "x86_64" ]; then
-    PATTERN="cicada-x86_64-unknown-linux-gnu.tar.gz"
+    URL="https://github.com/cicadahq/release/releases/latest/download/cicada-x86_64-unknown-linux-gnu.tar.gz"
 else
     echo "Unsupported OS or Architecture"
     exit 1
 fi
 
-gh release download --repo "cicadahq/release" --pattern "$PATTERN" --dir "$TMP_DIR"
+curl -fSsL -o "$TMP_DIR" "$URL"
 
 # extract the file
 tar -xvf "$TMP_DIR/$PATTERN" -C "$TMP_DIR"
