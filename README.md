@@ -1,3 +1,5 @@
+# ARCHIVED PLEASE SEE https://github.com/cicadahq/cicada 
+
 # Cicada Releases
 
 ## Getting started guide
