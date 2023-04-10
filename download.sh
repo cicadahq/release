@@ -45,7 +45,7 @@ else
     exit 1
 fi
 
-curl -fSsL -o "$TMP_DIR/$PATTERN" "https://github.com/cicadahq/release/releases/latest/download/$PATTERN"
+curl -fSsL -o "$TMP_DIR/$PATTERN" "https://github.com/cicadahq/cicada/releases/latest/download/$PATTERN"
 
 # extract the file
 tar -xvf "$TMP_DIR/$PATTERN" -C "$TMP_DIR"
